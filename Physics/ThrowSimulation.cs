@@ -32,16 +32,7 @@ public class ThrowSimulation : MonoBehaviour
 
         StartCoroutine(SimulateProjectile());
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(destructible) {
-        
-            GetComponent<DestructibleController>().Destroy();
-        
-        }
-    }
-
+    
     IEnumerator SimulateProjectile()
     {
         // Calculate distance to target
@@ -63,14 +54,14 @@ public class ThrowSimulation : MonoBehaviour
         while (elapse_time < flightDuration)
         {
             transform.Translate(
-                Vx * direction * Time.deltaTime * GameManager.instance.enemySpeed,
+                Vx * direction * Time.deltaTime,
                 (Vy - (gravity * elapse_time)) * Time.deltaTime * Time.timeScale,
                 0
             );
 
             elapse_time += Time.deltaTime;
 
-            yield return new WaitForSeconds(1 - GameManager.instance.speed); // slow time
+            yield return new WaitForSeconds(1); // slow time
         }
     }
 }

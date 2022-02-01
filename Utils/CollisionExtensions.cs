@@ -16,7 +16,6 @@ namespace Utils
          */
         private static float GetImpactForce (this Collision collision) {
            var force = collision.impulse.magnitude / Time.fixedDeltaTime;
-           GameManager.CheckForRecordOf(force);
            return force;
         }
 
